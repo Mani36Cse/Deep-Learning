@@ -1,0 +1,148 @@
+DL is worked on Neural Network
+
+NN == brain activity 
+
+Two Phases of learning in DL 
+1) FeedForward 
+2) Back Propagation
+
+example image :
+tree image it have 6 matrix 2 rows and 3 columns
+totally 6 matrix  
+each one have a color code 
+
+so each matrix work as a input totally it have 6 input
+
+Single perception works:
+5 core 
+Input 
+weights
+Net input function
+Activation function
+output
+
+work flow :
+Input → Multiply by Weights → Add Bias → Net Input (Z) → Activation → Output
+
+A vanilla neural network is a basic feedforward neural network with input, hidden, and output layers, where data flows in one direction only.
+
+## Feed Forward :
+for the understanding below mention for single neuron work flow
+Input = 6 input with 6 color code 6 input neurons
+
+weight = next step it will assignee the weight to every input Neuron, weights are assigned randomly and calculation happens here (Input x Weight = result) it will calculate for every 6 inputs.
+
+Net input function = next all 6 calculated values are get into summation, in one result value.
+
+*** important ***
+It will check the Net input function result value valid or not.
+We have many formula for check this. Sigmoid and ReLU
+Relu (Rectified Linear Unit)is the best formula for check the validation 
+
+Activation Function = next Check the value or validate the value using formulas here we use Relu for validate the value. if the validation ok then it will move forward the result to the next (if we assignee the 2nd hidden layer then it will move that and do the same checks(the activation function result in the first hidden layer result will act like a input same process assignee the weight and Net input function and Activation function the same will happen in the 2nd hidden layer)
+
+If the validation ok then it move the output layer
+
+Output layer = The same process happens in each layer: weights are assigned, the net input is calculated, and an activation function is applied. However, the activation function in the output layer may be different from ReLU depending on the problem.
+
+Hidden layers → usually ReLU
+Output layer → depends on the problem:
+	Classification → Softmax / Sigmoid
+	Regression → Linear
+
+So the process is same, but activation function may change.
+
+
+
+## ReLU (Rectified Linear Unit)
+Advantages: Fast computation (no exponentials), sparse activation, and avoids vanishing gradients for positive inputs.
+Disadvantages: Can suffer from "Dying ReLU" (neurons become inactive permanently) if learning rates are too high or data is negative.
+Best Use: Hidden layers of deep convolutional and feed-forward networks.
+
+
+
+## Back Propagation :
+
+Loss function, Cost function
+
+This process only works on DL ==> Supervised learning 
+
+Loss function == it calculate the only one data loss (actual value - predicated)
+
+Cost function == it will calculate the over all data in dataset and give the average value 
+
+Gradient Descent:
+
+an iterative optimization algorithm used to minimize the cost function (error) in machine learning models by updating parameters (weights and biases) in the direction of the steepest decrease. It works by calculating the gradient of the loss function, scaled by a learning rate, to gradually find the minimum, typically used to train linear regression and neural networks
+
+
+
+$$$$ Notes $$$$
+
+ANN and CNN is the Sequential process
+
+🔁 Flow Across Epochs
+
+Each epoch builds on the previous one
+
+Epoch 1 → Update weights → 
+Epoch 2 → Continue from previous weights → 
+Epoch 3 → Further improvement → ...
+
+Without compile():
+
+❌ No optimizer → no weight updates
+❌ No loss → no learning objective
+❌ No metrics → no performance tracking
+
+👉 Model cannot train
+
+Deep learning work flow :
+1) brain creation or model creation 
+2) compile model
+3) Early stopping setup ==== (this is optional but it best to save the time and prevent the overfitting)
+4) Train model  
+
+$$$$  Interview questions: $$$$ 
+
+1) what is the relation between learning rate | Gradient Descent ?
+When there is highest Learning rate, then our model will miss to achieve the global minimum.
+When our learning rate is very slow on that time was can achieve global minimum.
+Global minimum or Global cost minimum == zero error rate 
+
+
+Global minima are the lowest absolute points of a function over its entire domain, while local minima are lower than surrounding points but not necessarily the lowest overall. A function can have only one global minimum, but multiple local minima. Optimization algorithms often aim for global minima, but can get stuck in local minima
+
+Epoch weight are carry forward to next epoch ?
+
+The weights learned after each epoch are carried forward to the next epoch, allowing the model to progressively improve rather than starting from scratch.
+
+Epoch Early stopping ?
+
+Early stopping halts training when validation performance stops improving, preventing overfitting and saving computation time.
+
+
+The compile step defines the optimizer, loss function, and evaluation metrics, which are essential for training the model by guiding how it learns and measures performance.
+
+
+## ANN is a Sequential process 
+
+Feed forward created here 
+keras.Sequential 
+
+model.compile() is used to configure the learning process by defining the loss function, optimizer (which performs backpropagation), and evaluation metrics.
+
+model.compile() prepares the model for training
+
+It tells the model:
+
+How to calculate error
+How to update weights (backpropagation method)
+What metrics to track
+
+
+“What is val_accuracy?”
+
+You say:
+
+It measures how well the model performs on unseen validation data during training.
